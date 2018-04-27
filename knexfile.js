@@ -1,44 +1,30 @@
-// Update with your config settings.
+const path = require('path');
+const BASE_PATH = path.join(__dirname, 'src', 'server', 'db');
+require('dotenv').config();
 
 module.exports = {
-
+  test: {
+    client: 'pg',
+    connection: `postgres://${process.env.dbUsername}:${
+      process.env.dbPassword
+    }@localhost:5432/tabotify_api_test`,
+    migrations: {
+      directory: path.join(BASE_PATH, 'migrations'),
+    },
+    seeds: {
+      directory: path.join(BASE_PATH, 'seeds'),
+    },
+  },
   development: {
-    client: 'sqlite3',
-    connection: {
-      filename: './dev.sqlite3'
-    }
-  },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+    client: 'pg',
+    connection: `postgres://${process.env.dbUsername}:${
+      process.env.dbPassword
+    }@localhost:5432/tabotify_api`,
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      directory: path.join(BASE_PATH, 'migrations'),
+    },
+    seeds: {
+      directory: path.join(BASE_PATH, 'seeds'),
+    },
   },
-
-  production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  }
-
 };

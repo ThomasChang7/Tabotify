@@ -4,7 +4,7 @@
   "description": "Webapp to play Spotify and display Tabs",
   "main": "index.js",
   "scripts": {
-    "test": "jest --forceExit"
+    "test": "jest"
   },
   "jest": {
     "testEnvironment": "node"
@@ -26,6 +26,7 @@
     "knex": "^0.14.6",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
+    "objection": "^1.1.7",
     "pg": "^7.4.1",
     "uuid": "^3.2.1"
   },

@@ -1,7 +1,7 @@
 import objection from 'objection';
 import _ from 'lodash';
 import knex from '../db/config';
-import MyQueryBuilder from './QueryBuilder'
+import MyQueryBuilder from './QueryBuilder';
 
 objection.Model.knex(knex);
 
@@ -28,8 +28,6 @@ class Model extends objection.Model {
   $parseDatabaseJson(json) {
     return _.mapKeys(json, (v, k) => _.camelCase(k));
   }
-
-
 }
 
-export Model;
+export default Model;

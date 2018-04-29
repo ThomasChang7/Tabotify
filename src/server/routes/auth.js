@@ -3,7 +3,7 @@ import passport from 'koa-passport';
 
 const router = new Router();
 
-router.get('login', async (ctx) => {
+router.get('/login', async (ctx) => {
   ctx.redirect('/auth/spotify');
 });
 
@@ -27,4 +27,4 @@ router.get('/logout', async (ctx) => {
   ctx.redirect('/');
 });
 
-export default router;
+module.exports = router;

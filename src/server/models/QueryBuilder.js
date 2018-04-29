@@ -10,4 +10,4 @@ class MyQueryBuilder extends QueryBuilder {
   }
 }
 
-export MyQueryBuilder;
+export default MyQueryBuilder;

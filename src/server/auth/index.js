@@ -38,3 +38,5 @@ passport.use(new SpotifyStrategy(
       });
   },
 ));
+
+export default passport;

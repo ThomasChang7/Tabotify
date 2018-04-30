@@ -11,9 +11,9 @@ const combineRouters = require('koa-combine-routers');
 const app = new Koa();
 
 app.use(koaBodyParser());
+app.keys = ['tabotify:sesh'];
 app.use(koaSession(app));
-// static file serve
-app.keys = [process.env.SESSION_SECRET];
+
 require('./auth');
 
 const router = combineRouters([indexRoutes, authRoutes]);
@@ -22,6 +22,7 @@ app.use(passport.session());
 app.use(router);
 
 const PORT = process.env.PORT || 8081;
+
 const server = app.listen(PORT).on('error', (err) => {
   console.error(err);
 });

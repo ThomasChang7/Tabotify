@@ -1,7 +1,7 @@
-import objection from 'objection';
-import _ from 'lodash';
-import knex from '../db/config';
-import MyQueryBuilder from './QueryBuilder';
+const objection = require('objection');
+const _ = require('lodash');
+const knex = require('../db/config');
+const MyQueryBuilder = require('./QueryBuilder');
 
 objection.Model.knex(knex);
 
@@ -29,5 +29,4 @@ class Model extends objection.Model {
     return _.mapKeys(json, (v, k) => _.camelCase(k));
   }
 }
-
-export default Model;
+module.exports = Model;

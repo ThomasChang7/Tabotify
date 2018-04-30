@@ -1,5 +1,5 @@
-import Router from 'koa-router';
-import passport from 'koa-passport';
+const Router = require('koa-router');
+const passport = require('koa-passport');
 
 const router = new Router();
 
@@ -10,16 +10,20 @@ router.get('/login', async (ctx) => {
 router.get(
   '/auth/spotify',
   passport.authenticate('spotify', {
-    scope: 'user-read-email user-read-private playlist-modify-public playlist-modify-private',
+    scope: 'user-read-email  playlist-modify-private',
+    showDialog: true,
   }),
 );
 
 router.get(
-  '/spotify/callback',
+  '/callback',
   passport.authenticate('spotify', {
     failureRedirect: '/login',
+    successRedirect: '/',
   }),
-  async ctx => ctx.redirect('/'),
+  async (ctx) => {
+    ctx.redirect('/');
+  },
 );
 
 router.get('/logout', async (ctx) => {

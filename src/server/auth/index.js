@@ -1,6 +1,6 @@
-import { Strategy as SpotifyStrategy } from 'passport-spotify';
-import passport from 'koa-passport';
-import User from '../models/User';
+const SpotifyStrategy = require('passport-spotify').Strategy;
+const passport = require('koa-passport');
+const User = require('../models/User');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -9,16 +9,15 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   User.query()
     .findById(id)
-    .then((user) => {
-      done(null, user);
-    });
+    .then(user => done(null, user))
+    .catch(error => done(error, null));
 });
 
 passport.use(new SpotifyStrategy(
   {
     clientID: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    callbackUrl: process.env.CALLBACK_URL,
+    callbackURL: `${process.env.URL || 'http://localhost:8081'}/callback`,
   },
   (accessToken, refreshToken, profile, done) => {
     const userProfile = {
@@ -28,9 +27,12 @@ passport.use(new SpotifyStrategy(
       accessToken,
       photo: profile.photos[0],
     };
+
     User.query()
       .upsert(userProfile)
+      .where('username', profile.id)
       .then((user) => {
+        console.log(user);
         done(null, user);
       })
       .catch((error) => {
@@ -39,4 +41,4 @@ passport.use(new SpotifyStrategy(
   },
 ));
 
-export default passport;
+module.exports = passport;

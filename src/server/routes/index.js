@@ -3,7 +3,6 @@ const Router = require('koa-router');
 const router = new Router();
 
 router.get('/', async (ctx) => {
-  console.log(ctx);
   ctx.body = {
     data: 'Sending some JSON',
   };

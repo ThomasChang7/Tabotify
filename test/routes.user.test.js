@@ -21,10 +21,11 @@ describe('Routes: users', () => {
 
   describe('GET /users/:id', () => {
     test('Should return single user', async () => {
-      const res = await chai.request(server).get('/users/1');
+      const res = await chai.request(server).get('/users/13');
+
       expect(res.status).toEqual(200);
-      expect(res.body.data.firstName).toEqual('Thomas');
-      expect(res.body.data.lastName).toEqual('Chang');
+      expect(res.body.username).toEqual('mrchangman');
+      expect(res.body.name).toEqual('Thomas Chang');
     });
   });
 });

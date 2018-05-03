@@ -24,7 +24,6 @@ passport.use(new SpotifyStrategy(
       name: profile.displayName,
       email: profile.emails[0].value,
       username: profile.id,
-      accessToken,
       photo: profile.photos[0],
     };
 

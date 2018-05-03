@@ -6,6 +6,7 @@ const passport = require('koa-passport');
 // routes
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/users');
 const combineRouters = require('koa-combine-routers');
 
 const app = new Koa();
@@ -16,7 +17,7 @@ app.use(koaSession(app));
 
 require('./auth');
 
-const router = combineRouters([indexRoutes, authRoutes]);
+const router = combineRouters([indexRoutes, authRoutes, userRoutes]);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(router);

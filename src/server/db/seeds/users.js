@@ -6,25 +6,31 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('users').insert([
         {
-          id: 1,
+          id: 13,
           name: 'Thomas Chang',
           email: 'tomchang93@gmail.com',
-          accessToken: 'tokenOfAccess',
+          username: 'mrchangman',
           photo: 'photoHere',
+          created_at: Date.now(),
+          updated_at: Date.now(),
         },
         {
           id: 2,
           name: 'Melisa Cheng',
           email: 'melmelmelmel@gmail.com',
-          accessToken: 'tokenOfAccess',
+          username: 'melcheng',
           photo: 'photoHere',
+          created_at: Date.now(),
+          updated_at: Date.now(),
         },
         {
           id: 3,
           name: 'Fred Chen',
           email: 'Fred@gmail.com',
-          accessToken: 'tokenOfAccess',
+          username: 'divinexcross',
           photo: 'photoHere',
+          created_at: Date.now(),
+          updated_at: Date.now(),
         },
       ]);
     });
